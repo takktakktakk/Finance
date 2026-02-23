@@ -1,0 +1,425 @@
+/* ===============================
+   ☕ Coffee App – Optimized Style
+================================ */
+
+/* ========= Base ========= */
+
+body {
+    font-family: "Zen Maru Gothic", sans-serif;
+    background: #f2efec;
+    margin: 0;
+    padding-bottom: 80px;
+}
+
+/* ========= Navbar ========= */
+
+.navbar {
+    background: rgba(60, 40, 20, 0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(255, 230, 200, 0.25);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: #fff !important;
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-weight: 500;
+}
+
+.nav-link:hover {
+    color: #ffe6c7 !important;
+}
+
+/* ========= Bottom Navigation ========= */
+
+.bottom-nav {
+    position: fixed;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(15px);
+    border-radius: 30px;
+    padding: 18px 30px;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.bottom-nav a {
+    text-decoration: none;
+    color: #7c6f63;
+    font-size: 12px;
+    text-align: center;
+}
+
+.bottom-nav span {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 4px;
+}
+
+.bottom-nav a:hover {
+    color: #5a3e2b;
+}
+
+@media (min-width: 768px) {
+    .bottom-nav {
+        display: none;
+    }
+}
+
+/* ========= Headings ========= */
+
+h1,
+h2,
+h3 {
+    font-weight: 700;
+    color: #6f4e37;
+    letter-spacing: 1px;
+}
+
+.text-muted {
+    color: #8b7765 !important;
+}
+
+/* ========= Buttons ========= */
+
+.btn-dark {
+    background-color: #6f4e37;
+    border: none;
+}
+
+.btn-dark:hover {
+    background-color: #5a3e2b;
+}
+
+.btn-outline-dark {
+    border-radius: 16px;
+    border: 1px solid #6f4e37;
+    color: #6f4e37;
+    transition: 0.2s ease;
+}
+
+.btn-outline-dark:hover {
+    background-color: #6f4e37;
+    color: white;
+}
+
+/* ========= Roast Badges ========= */
+
+.badge {
+    font-size: 0.85rem;
+    padding: 8px 14px;
+    border-radius: 999px;
+}
+
+.roast-light {
+    background: #d7b899;
+}
+
+.roast-cinnamon {
+    background: #c49a6c;
+}
+
+.roast-medium {
+    background: #a47148;
+}
+
+.roast-high {
+    background: #8b5a2b;
+}
+
+.roast-city {
+    background: #6f4e37;
+}
+
+.roast-fullcity {
+    background: #5a3a24;
+}
+
+.roast-french {
+    background: #3e2415;
+}
+
+.roast-italian {
+    background: #1f120a;
+}
+
+.text-roast-light {
+    color: #d7b899;
+}
+
+.text-roast-cinnamon {
+    color: #c49a6c;
+}
+
+.text-roast-medium {
+    color: #a47148;
+}
+
+.text-roast-high {
+    color: #8b5a2b;
+}
+
+.text-roast-city {
+    color: #6f4e37;
+}
+
+.text-roast-fullcity {
+    color: #5a3a24;
+}
+
+.text-roast-french {
+    color: #3e2415;
+}
+
+.text-roast-italian {
+    color: #1f120a;
+}
+
+.roast-light,
+.roast-cinnamon,
+.roast-medium,
+.roast-high,
+.roast-city,
+.roast-fullcity,
+.roast-french,
+.roast-italian {
+    color: white;
+}
+
+/* ========= Slider ========= */
+
+.form-range::-webkit-slider-thumb {
+    background-color: #6f4e37;
+}
+
+.form-range::-webkit-slider-runnable-track {
+    background-color: rgba(111, 78, 55, 0.2);
+}
+
+.slider-value {
+    font-weight: bold;
+    color: #6f4e37;
+}
+
+/* ========= Chart ========= */
+
+.chart-box {
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+canvas {
+    display: block;
+    margin: auto;
+}
+
+/* ========= Info Pills ========= */
+
+.info-pill {
+    background: rgba(111, 78, 55, 0.12);
+    color: #4b2e1f;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* ========= List Page Layout ========= */
+
+.page-wrap {
+    max-width: 880px;
+    margin: 30px auto 40px;
+    padding: 0 20px;
+}
+
+.page-header {
+    margin-bottom: 50px;
+}
+
+.eyebrow {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #9a8f84;
+}
+
+.recipe-row {
+    background: #f7f4f1;
+    border-radius: 30px;
+    padding: 20px 35px;
+    margin-bottom: 40px;
+    box-shadow: 0 20px 40px rgba(60, 40, 20, 0.06);
+}
+
+/* ========= List Meta ========= */
+
+.meta-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.meta-info {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.country-pill {
+    background: #e6e0d9;
+    padding: 6px 12px;
+    border-radius: 999px;
+}
+
+.bean-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #3e2c1c;
+}
+
+.bean-desc {
+    color: #7d7266;
+    margin-bottom: 18px;
+}
+
+.divider {
+    height: 1px;
+    background: #e4dfd9;
+    margin: 15px 0;
+}
+
+.meta-bottom {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.time-pill {
+    font-size: 12px;
+    color: #8c8176;
+}
+
+/* ========= Action Area ========= */
+
+.action-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.view-btn {
+    flex: 1;
+    background: linear-gradient(90deg, #5a3e2b, #6b4b33);
+    color: white;
+    padding: 16px;
+    border-radius: 18px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 10px 20px rgba(90, 62, 43, 0.25);
+    transition: 0.2s;
+}
+
+.view-btn:hover {
+    opacity: 0.9;
+}
+
+.side-icons {
+    display: flex;
+    gap: 10px;
+    margin-left: 15px;
+}
+
+/* ========= Icon Buttons ========= */
+
+.icon-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 16px;
+    background: #f3efeb;
+    border: 1px solid #e2ddd8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #6c757d;
+    transition: 0.2s ease;
+}
+
+.icon-btn:hover {
+    transform: translateY(-2px);
+}
+
+.icon-btn.delete {
+    border: 1px solid #f3d6d6;
+    background-color: #ff7171;
+    color: white;
+}
+
+.icon-btn.edit {
+    background-color: #9aa1ff;
+    color: white;
+}
+
+/* ========= Small Decorative ========= */
+
+.recipe-right {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+/* ハート基本 */
+.favorite-btn {
+    font-size: 1.4rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+/* 通常（グレー） */
+.favorite-btn i {
+    color: #bbb;
+}
+
+/* お気に入り状態 */
+.favorite-btn.active i {
+    color: #e63946;
+}
+
+/* クリック時アニメーション */
+.favorite-btn.animate {
+    animation: popHeart 0.35s ease;
+}
+
+@keyframes popHeart {
+    0% {
+        transform: scale(1);
+    }
+
+    30% {
+        transform: scale(1.4);
+    }
+
+    60% {
+        transform: scale(0.9);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}

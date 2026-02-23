@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block title %}味チャート{% endblock %}
+{% block header %}☕ Taste Chart{% endblock %}
+
+{% block content %}
+
+<div class="container my-4" style="max-width: 720px;">
+
+    <div class="card shadow-sm rounded-4">
+        <div class="card-body">
+
+            <!-- お気に入り -->
+            {% if recipe.favorite %}
+            <div class="text-center text-warning fs-4 mb-2">⭐</div>
+            {% endif %}
+
+            <!-- 豆名 -->
+            <h2 class="fw-bold text-center mb-2">
+                {{ recipe.bean_type }}
+            </h2>
+
+            <!-- 焙煎 -->
+            <div class="text-center mb-3">
+                <span class="badge roast-{{ recipe.roast_key }} rounded-pill px-3 py-2">
+                    🔥 {{ recipe.roast_level }}
+                </span>
+            </div>
+
+            <!-- 原産情報 -->
+            <p class="text-muted text-center small mb-4">
+                <strong>{{ recipe.country }}</strong>
+                {% if recipe.farm %} / {{ recipe.farm }}{% endif %}
+                {% if recipe.process %} / {{ recipe.process }}{% endif %}
+                {% if recipe.variety %} / {{ recipe.variety }}{% endif %}
+            </p>
+
+            <!-- brew -->
+            <div class="mb-3">
+                <div class="fw-bold small mb-1">brew</div>
+                <div class="small text-muted">
+                    {% if recipe.bean_amount %}<div>bean amount：{{ recipe.bean_amount }}g</div>{% endif %}
+                    {% if recipe.grind %}<div>grind：{{ recipe.grind }}</div>{% endif %}
+                    {% if recipe.water_amount %}<div>water amount：{{ recipe.water_amount }}ml</div>{% endif %}
+                    {% if recipe.ratio %}<div>ratio：1:{{ recipe.ratio }}</div>{% endif %}
+                    {% if recipe.water_temp %}<div>water temp：{{ recipe.water_temp }}℃</div>{% endif %}
+                    {% if recipe.brew_time %}<div>⏱ brew time：{{ recipe.brew_time }}</div>{% endif %}
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- tools -->
+            <div class="mb-3">
+                <div class="fw-bold small mb-1">tools</div>
+                <div class="small text-muted">
+                    {% if recipe.dripper %}<div>dripper：{{ recipe.dripper }}</div>{% endif %}
+                    {% if recipe.filter_type %}<div>filter：{{ recipe.filter_type }}</div>{% endif %}
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- チャート -->
+            <div class="mb-4">
+                <canvas id="tasteChart" class="w-100"></canvas>
+            </div>
+
+            <!-- メモ -->
+            {% if recipe.memo %}
+            <div class="card bg-light border-0 rounded-4 p-3 mb-4">
+                <div class="small fw-bold mb-1">flavour wheel</div>
+                <p class="mb-0 text-muted">{{ recipe.memo }}</p>
+            </div>
+            {% endif %}
+
+            <!-- アクション -->
+            <div class="d-flex justify-content-between align-items-center mt-4">
+
+                <!-- 一覧へ戻る（横長ピル） -->
+                <a href="/list" class="btn btn-outline-dark btn-sm rounded-pill">
+                    Back to List
+                </a>
+
+                <div class="d-flex gap-2">
+
+                    <!-- 編集（丸ボタン） -->
+                    <a href="/edit/{{ recipe.id }}" 
+                    class="btn btn-sm btn-outline-secondary rounded-circle">
+                        <i class="bi bi-pencil"></i>
+                    </a>
+
+                    <!-- 削除（丸ボタン） -->
+                    <form action="/delete/{{ recipe.id }}" method="POST">
+                        <button type="submit"
+                                class="btn btn-sm btn-outline-danger rounded-circle"
+                                onclick="return confirm('本当に削除しますか？☕');">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const recipe = {
+        acidity: {{ recipe.acidity or 0 }},
+        sweetness: {{ recipe.sweetness or 0 }},
+        bitterness: {{ recipe.bitterness or 0 }},
+        flavor: {{ recipe.flavor or 0 }},
+        aroma: {{ recipe.aroma or 0 }},
+        body: {{ recipe.body or 0 }},
+        after_taste: {{ recipe.after_taste or 0 }},
+        balance: {{ recipe.balance or 0 }}
+    };
+</script>
+
+<script src="{{ url_for('static', filename='js/result.js') }}"></script>
+
+{% endblock %}

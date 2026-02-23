@@ -1,0 +1,32 @@
+DROP TABLE IF EXISTS recipes;
+
+CREATE TABLE recipes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    bean_type VARCHAR(100),
+    country VARCHAR(100),
+    farm VARCHAR(100),
+    altitude VARCHAR(50),
+    variety VARCHAR(100),
+    process VARCHAR(100),
+    roast_level VARCHAR(50),
+    roast_day DATE,
+    bean_amount DECIMAL(5,2),
+    grind VARCHAR(50),
+    water_amount DECIMAL(5,2),
+    ratio DECIMAL(5,2),
+    water_temp INT,
+    brew_time VARCHAR(50),
+    dripper VARCHAR(100),
+    filter_type VARCHAR(100),
+    favorite BOOLEAN DEFAULT FALSE,
+    memo TEXT,
+    acidity INT,
+    sweetness INT,
+    bitterness INT,
+    flavor INT,
+    aroma INT,
+    body INT,
+    after_taste INT,
+    balance INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

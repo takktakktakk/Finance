@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+
+{% block title %}レシピ一覧{% endblock %}
+{% block header %}COLLECTION{% endblock %}
+
+
+
+{% block content %}
+
+<form method="GET" action="/list" class="row g-2 mb-4 align-items-center">
+
+    <!-- キーワード -->
+    <div class="col-md-6">
+        <input type="text"
+               name="q"
+               class="form-control form-control-sm rounded-pill"
+               placeholder="Search by bean or country..."
+               value="{{ request.args.get('q', '') }}">
+    </div>
+
+    <!-- 焙煎度 -->
+    <div class="col-md-4">
+        <select name="roast"
+                class="form-select form-select-sm rounded-pill">
+
+            <option value="">All Roasts</option>
+
+            {% for roast in [
+                "ライトロースト",
+                "シナモンロースト",
+                "ミディアムロースト",
+                "ハイロースト",
+                "シティロースト",
+                "フルシティロースト",
+                "フレンチロースト",
+                "イタリアンロースト"
+            ] %}
+                <option value="{{ roast }}"
+                    {% if request.args.get('roast') == roast %}selected{% endif %}>
+                    {{ roast }}
+                </option>
+            {% endfor %}
+
+        </select>
+    </div>
+
+    <!-- ボタン -->
+    <div class="col-md-2">
+        <button class="btn btn-outline-dark btn-sm rounded-pill w-100">
+            🔍 Filter
+        </button>
+    </div>
+
+</form>
+
+<div class="container my-4" style="max-width: 720px;">
+
+{% for r in recipes %}
+<div class="card mb-4 shadow-sm rounded-4">
+
+    <div class="card-body">
+
+        <!-- 上段 -->
+        <div class="d-flex justify-content-between align-items-center mb-2">
+
+            <div>
+                <span class="badge bg-light text-dark border text-uppercase">
+                    {{ r.country }}
+                </span>
+                <small class="text-muted ms-2">
+                    created at：{{ r.created_at.strftime("%Y.%m.%d") }}
+                </small>
+            </div>
+
+            <button class="btn btn-sm p-0 favorite-btn {% if r.favorite %}active{% endif %}" data-id="{{ r.id }}">
+                <i class="bi {% if r.favorite %}bi-heart-fill text-danger{% else %}bi-heart{% endif %} fs-5"></i>
+            </button>
+
+        </div>
+
+        <!-- Bean名 -->
+        <h5 class="fw-bold mb-2">{{ r.bean_type }}</h5>
+
+        <!-- 焙煎 -->
+        <span class="badge rounded-pill px-3 py-2 mb-3 roast-{{ r.roast_key }}">
+            🔥 {{ r.roast_level }}
+        </span>
+
+        <!-- Beans情報 -->
+        <div class="small text-muted mb-3">
+
+            <div class="fw-bold text-dark mb-1">beans</div>
+
+            <div>beans type：{{ r.bean_type }}</div>
+            {% if r.country %}<div>country：{{ r.country }}</div>{% endif %}
+            {% if r.farm %}<div>farm：{{ r.farm }}</div>{% endif %}
+            {% if r.altitude %}<div>altitude：{{ r.altitude }}</div>{% endif %}
+            {% if r.variety %}<div>variety：{{ r.variety }}</div>{% endif %}
+            {% if r.process %}<div>process：{{ r.process }}</div>{% endif %}
+            {% if r.roast_day %}<div>roast day：{{ r.roast_day }}</div>{% endif %}
+
+        </div>
+
+        <hr>
+
+        <!-- flavour -->
+        <div class="mb-3">
+            <div class="fw-bold small mb-1">flavour wheel</div>
+            {% if r.memo %}
+            <div class="fs-6">{{ r.memo }}</div>
+            {% endif %}
+        </div>
+
+        <!-- アクション -->
+        <div class="d-flex justify-content-between align-items-center">
+
+            <a href="/result/{{ r.id }}" class="btn btn-outline-dark btn-sm rounded-pill">
+                View Recipe
+            </a>
+
+            <div class="d-flex gap-2">
+
+                <a href="/edit/{{ r.id }}" class="btn btn-sm btn-outline-secondary rounded-circle">
+                    <i class="bi bi-pencil"></i>
+                </a>
+
+                <form action="/delete/{{ r.id }}" method="POST">
+                    <button type="submit"
+                            class="btn btn-sm btn-outline-danger rounded-circle"
+                            onclick="return confirm('本当に削除しますか？☕');">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+{% endfor %}
+
+</div>
+
+{% endblock %}
