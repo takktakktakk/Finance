@@ -10,6 +10,7 @@ from streamlit_autorefresh import st_autorefresh
 from config import AUTO_REFRESH_INTERVAL_MS
 from components.map_panel import render_map_panel
 from components.market_panel import render_ticker_panel
+from components.global_situation_panel import render_global_situation_panel
 from components.chart_panel import render_chart_panel
 from components.news_panel import render_news_panel
 
@@ -54,7 +55,9 @@ with header_r:
 
 st.divider()
 
-map_col, ticker_col = st.columns([3, 1], gap="medium")
+global_col, map_col, ticker_col = st.columns([1, 3, 1], gap="small")
+with global_col:
+    render_global_situation_panel()
 with map_col:
     st.markdown(
         "<div style='font-size:13px;color:#888;letter-spacing:1px;margin-bottom:4px'>"

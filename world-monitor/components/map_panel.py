@@ -8,6 +8,25 @@ from config import INSTRUMENTS, MAP_KEYS
 from data.market_data import fetch_all_quotes
 
 
+HIGHLIGHTED_COUNTRIES = ["JPN", "USA", "GBR", "IND"]
+
+COUNTRY_LABELS = [
+    {"name": "日本",       "lat": 36.20, "lon": 138.25},
+    {"name": "米国",       "lat": 39.83, "lon":  -98.58},
+    {"name": "英国",       "lat": 54.50, "lon":   -2.50},
+    {"name": "インド",     "lat": 20.59, "lon":   78.96},
+    {"name": "中国",       "lat": 35.86, "lon":  104.20},
+    {"name": "ドイツ",     "lat": 51.16, "lon":   10.45},
+    {"name": "オーストラリア","lat": -25.27,"lon": 133.78},
+    {"name": "ブラジル",   "lat": -14.24, "lon": -51.93},
+    {"name": "ロシア",     "lat": 61.52, "lon":  105.32},
+    {"name": "カナダ",     "lat": 56.13, "lon": -106.35},
+    {"name": "メキシコ",   "lat": 23.63, "lon": -102.55},
+    {"name": "サウジ",     "lat": 23.89, "lon":   45.08},
+    {"name": "南アフリカ", "lat": -30.56, "lon":  22.94},
+]
+
+
 def _color_for(change_pct: float | None) -> str:
     if change_pct is None:
         return "#888888"
@@ -29,6 +48,36 @@ def _size_for(change_pct: float | None) -> float:
 def render_map_panel() -> None:
     tickers = list({INSTRUMENTS[k]["ticker"] for k in MAP_KEYS})
     quotes = fetch_all_quotes(tickers)
+
+    fig = go.Figure()
+
+    fig.add_trace(
+        go.Choropleth(
+            locations=HIGHLIGHTED_COUNTRIES,
+            z=[1] * len(HIGHLIGHTED_COUNTRIES),
+            colorscale=[[0, "#3A2218"], [1, "#FF6B35"]],
+            zmin=0,
+            zmax=1,
+            showscale=False,
+            marker_line_color="#FF6B35",
+            marker_line_width=0.6,
+            hoverinfo="location",
+            name="",
+        )
+    )
+
+    fig.add_trace(
+        go.Scattergeo(
+            lat=[c["lat"] for c in COUNTRY_LABELS],
+            lon=[c["lon"] for c in COUNTRY_LABELS],
+            mode="text",
+            text=[c["name"] for c in COUNTRY_LABELS],
+            textfont=dict(color="#999", size=10, family="sans-serif"),
+            textposition="middle center",
+            hoverinfo="skip",
+            showlegend=False,
+        )
+    )
 
     lats, lons, sizes, colors, hovers, texts = [], [], [], [], [], []
     for k in MAP_KEYS:
@@ -58,7 +107,6 @@ def render_map_panel() -> None:
         hovers.append(hover)
         texts.append(meta["jp"])
 
-    fig = go.Figure()
     fig.add_trace(
         go.Scattergeo(
             lat=lats,
@@ -67,14 +115,15 @@ def render_map_panel() -> None:
             marker=dict(
                 size=sizes,
                 color=colors,
-                line=dict(width=1, color="#FAFAFA"),
-                opacity=0.85,
+                line=dict(width=1.5, color="#FAFAFA"),
+                opacity=0.92,
             ),
             text=texts,
             textposition="top center",
-            textfont=dict(color="#FAFAFA", size=11),
+            textfont=dict(color="#FAFAFA", size=11, family="sans-serif"),
             hovertext=hovers,
             hoverinfo="text",
+            showlegend=False,
         )
     )
 
@@ -92,7 +141,7 @@ def render_map_panel() -> None:
         bgcolor="rgba(0,0,0,0)",
     )
     fig.update_layout(
-        height=520,
+        height=560,
         margin=dict(l=0, r=0, t=10, b=0),
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
@@ -101,6 +150,6 @@ def render_map_panel() -> None:
 
     st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
     st.caption(
-        "🟢 上昇 / Up   🔴 下落 / Down   ⚪ データなし / No data    "
-        "マーカー サイズ = 変化率 / Size = magnitude of change"
+        "🟧 アクティブ地域 (日米英印) ・ 🟢 上昇 / Up ・ 🔴 下落 / Down ・ ⚪ データなし    "
+        "マーカー サイズ = 変化率 / Size = magnitude"
     )
