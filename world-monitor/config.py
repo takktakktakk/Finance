@@ -30,13 +30,15 @@ PERIODS = {
 }
 
 NEWS_SOURCES = {
-    "nikkei": {"jp": "日経平均", "yahoo_ticker": "^N225", "google_query": "Nikkei 225"},
-    "sp500": {"jp": "S&P 500", "yahoo_ticker": "^GSPC", "google_query": "S&P 500"},
-    "gold": {"jp": "ゴールド", "yahoo_ticker": "GC=F", "google_query": "gold price"},
-    "ustreasury": {"jp": "米国債", "yahoo_ticker": None, "google_query": "US Treasury yield"},
-    "nifty50": {"jp": "Nifty 50", "yahoo_ticker": "^NSEI", "google_query": "Nifty 50 India"},
-    "acwi": {"jp": "オルカン (ACWI)", "yahoo_ticker": "ACWI", "google_query": "MSCI ACWI"},
+    "nikkei":     {"jp": "日経平均",      "google_query": "日経平均"},
+    "sp500":      {"jp": "S&P 500",       "google_query": "S&P500 株価"},
+    "gold":       {"jp": "ゴールド",      "google_query": "金価格 相場"},
+    "ustreasury": {"jp": "米国債",        "google_query": "米国債 利回り"},
+    "nifty50":    {"jp": "Nifty 50",      "google_query": "インド株 Nifty"},
+    "acwi":       {"jp": "オルカン",      "google_query": "オールカントリー 投資信託"},
 }
+
+NEWS_PER_TOPIC = 3
 
 CACHE_TTL_MARKET = 300
 CACHE_TTL_NEWS = 1800
