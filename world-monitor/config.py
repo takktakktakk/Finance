@@ -3,15 +3,17 @@
 from __future__ import annotations
 
 INSTRUMENTS = {
-    "nikkei": {"jp": "日経平均", "en": "Nikkei 225", "ticker": "^N225", "kind": "index", "fmt": ",.2f"},
-    "sp500": {"jp": "S&P 500", "en": "S&P 500", "ticker": "^GSPC", "kind": "index", "fmt": ",.2f"},
-    "gold": {"jp": "ゴールド", "en": "Gold Futures", "ticker": "GC=F", "kind": "commodity", "fmt": ",.2f"},
-    "us10y": {"jp": "米国債10年利回り", "en": "US 10Y Yield", "ticker": "^TNX", "kind": "yield", "fmt": ".3f"},
-    "us5y": {"jp": "米国債5年利回り", "en": "US 5Y Yield", "ticker": "^FVX", "kind": "yield", "fmt": ".3f"},
-    "usdjpy": {"jp": "米ドル/円", "en": "USD/JPY", "ticker": "USDJPY=X", "kind": "fx", "fmt": ",.3f"},
-    "nifty50": {"jp": "Nifty 50 (印度)", "en": "Nifty 50 India", "ticker": "^NSEI", "kind": "index", "fmt": ",.2f"},
-    "acwi": {"jp": "オールカントリー (ACWI)", "en": "MSCI ACWI ETF", "ticker": "ACWI", "kind": "index", "fmt": ",.2f"},
+    "nikkei":  {"jp": "日経平均",            "en": "Nikkei 225",     "ticker": "^N225",    "kind": "index",     "fmt": ",.2f", "city": "Tokyo",    "lat": 35.6762, "lon": 139.6503},
+    "sp500":   {"jp": "S&P 500",             "en": "S&P 500",        "ticker": "^GSPC",    "kind": "index",     "fmt": ",.2f", "city": "New York", "lat": 40.7128, "lon":  -74.0060},
+    "gold":    {"jp": "ゴールド",            "en": "Gold Futures",   "ticker": "GC=F",     "kind": "commodity", "fmt": ",.2f", "city": "Chicago",  "lat": 41.8781, "lon":  -87.6298},
+    "us10y":   {"jp": "米国債10年利回り",    "en": "US 10Y Yield",   "ticker": "^TNX",     "kind": "yield",     "fmt": ".3f",  "city": "Washington","lat": 38.9072,"lon":  -77.0369},
+    "us5y":    {"jp": "米国債5年利回り",     "en": "US 5Y Yield",    "ticker": "^FVX",     "kind": "yield",     "fmt": ".3f",  "city": "Washington","lat": 38.9072,"lon":  -77.0369},
+    "usdjpy":  {"jp": "米ドル/円",           "en": "USD/JPY",        "ticker": "USDJPY=X", "kind": "fx",        "fmt": ",.3f", "city": "Tokyo",    "lat": 35.6762, "lon": 139.6503},
+    "nifty50": {"jp": "Nifty 50 (印度)",     "en": "Nifty 50 India", "ticker": "^NSEI",    "kind": "index",     "fmt": ",.2f", "city": "Mumbai",   "lat": 19.0760, "lon":  72.8777},
+    "acwi":    {"jp": "オールカントリー (ACWI)","en":"MSCI ACWI ETF","ticker": "ACWI",     "kind": "index",     "fmt": ",.2f", "city": "London",   "lat": 51.5074, "lon":   -0.1278},
 }
+
+MAP_KEYS = ["nikkei", "sp500", "gold", "us10y", "usdjpy", "nifty50", "acwi"]
 
 TOP_BAR_KEYS = ["nikkei", "sp500", "gold", "us10y", "us5y", "usdjpy"]
 
