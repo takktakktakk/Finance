@@ -15,7 +15,7 @@ INSTRUMENTS = {
 
 MAP_KEYS = ["nikkei", "sp500", "gold", "us10y", "usdjpy", "nifty50", "acwi"]
 
-TOP_BAR_KEYS = ["nikkei", "sp500", "gold", "us10y", "us5y", "usdjpy"]
+TOP_BAR_KEYS = ["nikkei", "sp500", "gold", "us5y", "us10y", "usdjpy"]
 
 CHART_KEYS = ["nikkei", "sp500", "gold", "nifty50", "acwi", "usdjpy"]
 
